@@ -1,0 +1,25 @@
+.Nav {
+  background-color: #ddd;
+  height: 20px;
+}
+
+a {
+  margin: 5px;
+  color: #000;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #bbb;
+}
+
+a.active {
+  background-color: aqua;
+}

@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   return (
     <div className='App'>
-      <h1>App Component</h1>
+      <h1>Skate Spots App</h1>
       <BrowserRouter>
         <Nav />
         <Routes>
