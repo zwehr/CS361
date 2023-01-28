@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Map, { Marker, Popup } from 'react-map-gl'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
+import { HiCursorClick } from 'react-icons/hi';
 import '../styles/AddSpot.css'
 
 export default function AddSpot() {
@@ -50,7 +51,7 @@ export default function AddSpot() {
 
         </Map>
       </div>
-      <p>Click on the map to fill coordinate fields.</p>
+      <p><HiCursorClick /> Click on the map to fill latitude and longitude fields.</p>
       <form onSubmit={handleSubmit} className="add-form">
         <label htmlFor="lat">Latitude:
           <input type="text" name="lat" id="lat" value={lat} onChange={(e) => setLat(e.target.value)} required></input>
