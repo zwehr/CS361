@@ -26,9 +26,13 @@ export default function AddSpot() {
         lat: lat,
         lng: lng
       });
-      console.log("Document written with ID: ", docRef.id);
+      alert("Spot saved successfully!");
+      setLat('')
+      setLng('')
+      setName('')
+      setDescription('')
     } catch (e) {
-      console.error("Error adding document: ", e);
+      alert("Error adding document: ", e);
     }
   }
 
