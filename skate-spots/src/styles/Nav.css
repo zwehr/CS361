@@ -1,10 +1,13 @@
 .Nav {
   background-color: #ddd;
-  height: 20px;
+  height: 40px;
+  border-bottom: 2px solid #000;
+  font-size: 24px;
+  line-height: 35px;
 }
 
 a {
-  margin: 5px;
+  padding: 8px;
   color: #000;
 }
 
