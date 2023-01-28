@@ -1,0 +1,8 @@
+.mapboxgl-canvas-container.mapboxgl-interactive,
+.mapboxgl-canvas-container.mapboxgl-interactive:active {
+  cursor: crosshair;
+}
+
+p {
+  font-weight: bold;
+}
