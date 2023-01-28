@@ -25,9 +25,9 @@ export default function SpotsMap() {
   return (
     <Map
       initialViewState={{
-        longitude: -98.5,
-        latitude: 39.8283,
-        zoom: 4
+        longitude: -20,
+        latitude: 20,
+        zoom: 2.5
       }}
       style={{ width: "100vw", height: "100vh" }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -35,7 +35,7 @@ export default function SpotsMap() {
     >
 
       {spots.map((spot) => (
-        <Marker latitude={spot.x} longitude={spot.y}>
+        <Marker latitude={spot.lat} longitude={spot.lng}>
           <img src={pin} />
         </Marker>
       ))}
