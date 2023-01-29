@@ -7,6 +7,7 @@ export default function Nav() {
       <NavLink to='/'>Home (Map)</NavLink>
       <NavLink to='/add-spot'>Add Spot</NavLink>
       <NavLink to='/login'>Login</NavLink>
+      <NavLink to='/sign-up'>Sign Up</NavLink>
     </nav>
   )
 }
