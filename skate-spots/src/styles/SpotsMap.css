@@ -1,3 +1,16 @@
 img:hover {
   cursor: pointer;
 }
+
+.SpotsMap h3 {
+  font-size: 22px;
+}
+
+.SpotsMap p {
+  font-size: 14px;
+}
+
+.SpotsMap .popup {
+  width: 200px;
+  height: 80px;
+}

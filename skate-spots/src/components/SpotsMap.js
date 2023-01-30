@@ -8,7 +8,7 @@ import pin from '../images/location-pin.png'
 
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
-  const [popupInfo, setPopupInfo] = useState('first-text')
+  const [popupInfo, setPopupInfo] = useState(null)
   const [selectedSpot, setSelectedSpot] = useState(null)
   const [showPopup, setShowPopup] = useState(false)
 
@@ -45,12 +45,27 @@ export default function SpotsMap() {
             longitude={spot.lng}
             onClick={e => {
               e.originalEvent.stopPropagation();
-              setPopupInfo(spot.name)
+              setPopupInfo(spot)
+              console.log(spot)
             }}
           >
             <img src={pin} />
           </Marker>
         ))}
+
+        {popupInfo && (
+          <Popup
+            anchor="top"
+            longitude={Number(popupInfo.lng)}
+            latitude={Number(popupInfo.lat)}
+            onClose={() => setPopupInfo(null)}
+          >
+            <div className='popup'>
+              <h3>{popupInfo.name}</h3>
+              <p>{popupInfo.description}</p>
+            </div>
+          </Popup>
+        )}
 
       </Map>
       <div className='map-legend-container'>
