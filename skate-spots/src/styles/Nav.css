@@ -6,23 +6,23 @@
   line-height: 35px;
 }
 
-a {
+.Nav a {
   padding: 8px;
   color: #000;
 }
 
-a:link {
+.Nav a:link {
   text-decoration: none;
 }
 
-a:visited {
+.Nav a:visited {
   text-decoration: none;
 }
 
-a:hover {
+.Nav a:hover {
   background-color: #bbb;
 }
 
-a.active {
+.Nav a.active {
   background-color: aqua;
 }

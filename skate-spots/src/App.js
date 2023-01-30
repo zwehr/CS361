@@ -5,6 +5,7 @@ import SpotsMap from './components/SpotsMap'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Account from './components/Account'
+import SpotsList from './components/SpotsList'
 import './App.css'
 import { AuthContextProvider } from './context/AuthContext'
 
@@ -21,6 +22,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/account' element={<Account />} />
+            <Route path='/spots-list' element={<SpotsList />} />
           </Routes>
         </AuthContextProvider>
       </BrowserRouter>
