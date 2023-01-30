@@ -9,8 +9,6 @@ import pin from '../images/location-pin.png'
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
   const [popupInfo, setPopupInfo] = useState(null)
-  const [selectedSpot, setSelectedSpot] = useState(null)
-  const [showPopup, setShowPopup] = useState(false)
 
   useEffect(() => {
     getFirestoreData();
