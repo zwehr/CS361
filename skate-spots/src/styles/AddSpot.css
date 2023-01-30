@@ -1,5 +1,5 @@
-.mapboxgl-canvas-container.mapboxgl-interactive,
-.mapboxgl-canvas-container.mapboxgl-interactive:active {
+.AddSpot .mapboxgl-canvas-container.mapboxgl-interactive,
+.AddSpot .mapboxgl-canvas-container.mapboxgl-interactive:active {
   cursor: crosshair;
 }
 
