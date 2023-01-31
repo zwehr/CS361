@@ -1,0 +1,19 @@
+.DeleteWarningPopup {
+  position: fixed;
+  width: 500px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  /* Negative half of height to keep centered. */
+  margin-left: -250px;
+  /* Negative half of width to keep centered. */
+  background-color: #ddd;
+  border: 2px solid #f00;
+  border-radius: 10px;
+}
+
+.DeleteWarningPopup p {
+  font-size: 24px;
+  padding-top: 40px;
+}
