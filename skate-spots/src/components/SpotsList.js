@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import DeleteWarningPopup from './DeleteWarningPopup'
@@ -7,22 +7,28 @@ import '../styles/SpotsList.css'
 export default function SpotsList() {
   const [spots, setSpots] = useState([])
   const [showDeleteWarning, setShowDeleteWarning] = useState(false)
+  const [currentSpot, setCurrentSpot] = useState(null)
+  const spotCollectionRef = collection(db, 'spots')
 
   useEffect(() => {
-    getFirestoreData();
-  }, [])
+    const getSpots = async () => {
+      const data = await getDocs(spotCollectionRef)
+      setSpots(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    }
 
-  async function getFirestoreData() {
-    const querySnapshot = await getDocs(collection(db, "spots"));
-    querySnapshot.forEach((spot) => {
-      console.log(spot.id, " => ", spot.data());
-      setSpots((currentSpots) => ([...currentSpots, spot.data()]))
-    });
-    console.log('at the end, spots is: ', spots)
+    getSpots()
+  }, [spotCollectionRef])
+
+  const handleClick = (spot) => {
+    setShowDeleteWarning(true)
+    setCurrentSpot(spot)
   }
 
-  const handleClick = () => {
-    setShowDeleteWarning(true)
+  const deleteDocument = async () => {
+    const spotDoc = doc(db, 'spots', currentSpot.id);
+    await deleteDoc(spotDoc)
+    setShowDeleteWarning(false)
+    alert(currentSpot.name + ' has been deleted.')
   }
 
   const toggleDeleteWarning = () => {
@@ -32,8 +38,24 @@ export default function SpotsList() {
   return (
     <div className='SpotsList'>
       <h2>Spots List</h2>
-      {spots.map((spot) => <div className='single-spot'>{spot.name} | {spot.description}<button onClick={handleClick}>Delete</button></div>)}
-      {showDeleteWarning && <DeleteWarningPopup toggleDeleteWarning={toggleDeleteWarning} />}
+      <div className='table-container'>
+        <table>
+          <thead>
+            <tr>
+              <th>Spot Name</th>
+              <th>Spot Description</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>ID</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {spots.map((spot) => <tr key={spot.id}><td>{spot.name}</td><td>{spot.description}</td><td>{spot.lat.toFixed(4)}</td><td>{spot.lng.toFixed(4)}</td><td>{spot.id}</td><td><button onClick={() => { handleClick(spot) }}>Delete</button></td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      {showDeleteWarning && <DeleteWarningPopup toggleDeleteWarning={toggleDeleteWarning} deleteDocument={deleteDocument} currentSpotName={currentSpot.name} />}
     </div>
   )
 }
