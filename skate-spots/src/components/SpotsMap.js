@@ -52,15 +52,18 @@ export default function SpotsMap() {
         ))}
 
         {popupInfo && (
-          <Popup
+          <Popup className='popup'
             anchor="top"
             longitude={Number(popupInfo.lng)}
             latitude={Number(popupInfo.lat)}
             onClose={() => setPopupInfo(null)}
           >
-            <div className='popup'>
+            <div>
               <h3>{popupInfo.name}</h3>
-              <p>{popupInfo.description}</p>
+              <p><strong>Type:</strong> {popupInfo.type}</p>
+              <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
+              <p><strong>Description:</strong> {popupInfo.description}</p>
+              <strong>Tags:</strong> {popupInfo.tags.map((tag) => <div>{tag}</div>)}
             </div>
           </Popup>
         )}

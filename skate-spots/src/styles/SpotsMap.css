@@ -11,6 +11,5 @@
 }
 
 .SpotsMap .popup {
-  width: 200px;
-  height: 80px;
+  text-align: left;
 }

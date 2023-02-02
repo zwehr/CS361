@@ -4,6 +4,52 @@
 }
 
 .AddSpot p {
-  font-weight: bold;
   font-size: 18px;
+}
+
+.AddSpot .form-container {
+  background-color: #ddd;
+  width: 300px;
+  margin: 0 auto 20px auto;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.AddSpot textarea {
+  width: 90%;
+  height: 75px;
+  padding: 20px;
+}
+
+.AddSpot input[type='text'],
+.AddSpot textarea,
+.AddSpot select {
+  display: block;
+  padding: 4px 2px;
+  margin: 2px 0 12px 10px;
+}
+
+.AddSpot input[type='select'] {
+  margin: 2px 0 30px 10px;
+}
+
+.AddSpot input[type='radio'] {
+  margin: 2px 0 12px 10px;
+}
+
+.AddSpot input[type='radio'] {
+  margin: 2px 0 12px 10px;
+}
+
+.AddSpot input[name='tags'] {
+  width: 90%;
+}
+
+.AddSpot .tag-directions {
+  font-size: 14px;
+}
+
+.AddSpot .current-tags {
+  padding-bottom: 12px;
 }
