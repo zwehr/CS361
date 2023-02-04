@@ -46,24 +46,6 @@
   margin-top: 8px;
 }
 
-.AddSpot .current-tag {
-  display: inline-block;
-  background-color: aqua;
-  padding: 3px 6px;
-  margin: 2px 6px 0 0;
-  border-radius: 8px;
-  border: 1px solid #000;
-}
-
 .AddSpot .tag-directions {
   font-size: 14px;
-}
-
-.AddSpot .tag-container {
-  border: 1px solid #000;
-  border-radius: 8px;
-  padding: 6px;
-  margin-top: 6px;
-  max-width: 300px;
-  height: auto;
 }

@@ -5,6 +5,7 @@ import { db } from '../firebase/config'
 import MapLegend from './MapLegend'
 import '../styles/SpotsMap.css'
 import pin from '../images/location-pin.png'
+import TagBubbles from './TagBubbles'
 
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
@@ -63,7 +64,7 @@ export default function SpotsMap() {
               <p><strong>Type:</strong> {popupInfo.type}</p>
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
-              <strong>Tags:</strong> {popupInfo.tags.map((tag) => <div>{tag}</div>)}
+              <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
           </Popup>
         )}
