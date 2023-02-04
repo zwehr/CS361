@@ -9,24 +9,24 @@ export default function AddSpot() {
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
   const [name, setName] = useState('')
-  const [type, setType] = useState('stairs')
+  const [type, setType] = useState('handrail')
   const [skateStopped, setSkateStopped] = useState('no')
   const [tag, setTag] = useState('')
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState(null)
   const [description, setDescription] = useState('')
 
   useEffect(() => {
-    // If user hit 'Space' key in tags text input, tag will be added to tags, input cleared
+    // If user hit 'Space' key in tag text input, tag will be added to tags, input cleared
     if (tag.charAt(tag.length - 1) === ' ') {
       // ...but if user hits 'Space' when field is blank, nothing happens (aside from the space being deleted)
       if (tag === ' ') {
         setTag('')
       } else {
-        setTags([...tags, tag.trim()])
+        tags ? setTags([...tags, tag.trim()]) : setTags([tag.trim()])
         setTag('')
       }
     }
-  }, [tag])
+  }, [tag, tags])
 
   const handleClick = (e) => {
     console.log(e.lngLat)
@@ -116,18 +116,16 @@ export default function AddSpot() {
             <input type='radio' value='yes' name='skate-stopped' checked={skateStopped === 'yes'} onChange={handleRadioChange} />Yes
             <input type='radio' value='no' name='skate-stopped' checked={skateStopped === 'no'} onChange={handleRadioChange} />No
           </label><br></br>
-          <label htmlFor='tag'>Tags: <p className='tag-directions'>Type a tag then press space. Use hyphens instead of spaces in tags (e.g. ride-on-grind)</p>
+          <label htmlFor='tag'>Tags: {tags && <div className='tag-container'>{tags.map((tag) => <div className='current-tag'>{tag}</div>)}</div>}
             <input type='text' name='tag' id='tag' value={tag} onChange={handleTagChange} />
+            <p className='tag-directions'>(Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind)</p>
           </label>
-          <div className='current-tags'>
-            {tags.map((tag) => <div>{tag}</div>)}
-          </div>
-          <label htmlFor="description">Description:
-            <textarea name="description" id="description" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+          <label htmlFor='description'>Description:
+            <textarea name='description' id='description' value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
           </label>
-          <input type="submit" value="Submit" />
+          <input type='submit' value='Submit' />
         </form>
       </div>
-    </div >
+    </div>
   )
 }
