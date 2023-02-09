@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   const [data, setData] = useState('')
 
-  const server = "http://localhost:4000/messagefromCS361"
+  const server = "http://localhost:4000/"
 
   useEffect(() => {
     // fetch data
@@ -13,7 +13,7 @@ function App() {
         await fetch(
           server
         )
-      ).text();
+      )
       // set state when the data received
       setData(data);
       console.log('data is: ', data);
@@ -25,6 +25,7 @@ function App() {
   return (
     <div className="App">
       <p>Message from server is: {data}</p>
+      <img src={data}></img>
     </div>
   );
 }
