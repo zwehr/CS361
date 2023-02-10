@@ -9,7 +9,7 @@ export default function Login() {
         <label htmlFor='password'>
           <input type='password' name='password' id='password'></input>
         </label>
-        <input type='submit' value='Log In'></input>
+        <input type='submit' value='Log In' disabled></input>
       </form>
     </div>
   )

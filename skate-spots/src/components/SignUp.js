@@ -29,7 +29,7 @@ export default function SignUp() {
         <label htmlFor='password'>
           <input onChange={(e) => setPassword(e.target.value)} type='password' name='password' id='password'></input>
         </label>
-        <input type='submit' value='Sign Up'></input>
+        <input type='submit' value='Sign Up' disabled></input>
       </form>
     </div>
   )
