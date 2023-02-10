@@ -63,6 +63,7 @@ export default function AddSpot() {
       setLng('')
       setName('')
       setDescription('')
+      setTags([])
     } catch (e) {
       alert("Error adding document: ", e);
     }
