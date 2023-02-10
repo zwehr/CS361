@@ -23,9 +23,9 @@ export default function SpotsMap() {
     const querySnapshot = await getDocs(collection(db, "spots"));
     let currSpots = []
     querySnapshot.forEach((spot) => {
-      currSpots.push(spot.data())
-      setSpots(currSpots)
+      currSpots.push({ ...spot.data(), id: spot.id })
     });
+    setSpots(currSpots)
   }
 
   return (
@@ -43,6 +43,7 @@ export default function SpotsMap() {
 
         {spots.map((spot) => (
           <Marker
+            key={spot.id}
             className='marker'
             latitude={spot.lat}
             longitude={spot.lng}

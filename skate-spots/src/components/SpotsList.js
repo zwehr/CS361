@@ -16,7 +16,6 @@ export default function SpotsList() {
       const data = await getDocs(spotCollectionRef)
       setSpots(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
-
     getSpots()
   }, [spotCollectionRef])
 
