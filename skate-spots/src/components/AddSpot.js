@@ -30,7 +30,6 @@ export default function AddSpot() {
   }, [tag, tags])
 
   const handleClick = (e) => {
-    console.log(e.lngLat)
     setLat(e.lngLat.lat)
     setLng(e.lngLat.lng)
   }

@@ -12,16 +12,20 @@ export default function SpotsMap() {
   const [popupInfo, setPopupInfo] = useState(null)
 
   useEffect(() => {
+    console.log(`Length of spots variable is: ${spots.length}, which should equal and not exceed total number of spots.`)
+  }, [spots])
+
+  useEffect(() => {
     getFirestoreData();
   }, [])
 
   async function getFirestoreData() {
     const querySnapshot = await getDocs(collection(db, "spots"));
+    let currSpots = []
     querySnapshot.forEach((spot) => {
-      console.log(spot.id, " => ", spot.data());
-      setSpots((currentSpots) => ([...currentSpots, spot.data()]))
+      currSpots.push(spot.data())
+      setSpots(currSpots)
     });
-    console.log('at the end, spots is: ', spots)
   }
 
   return (
@@ -45,7 +49,6 @@ export default function SpotsMap() {
             onClick={e => {
               e.originalEvent.stopPropagation();
               setPopupInfo(spot)
-              console.log(spot)
             }}
           >
             <img src={pin} />

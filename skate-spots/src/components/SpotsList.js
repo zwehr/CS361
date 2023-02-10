@@ -53,11 +53,27 @@ export default function SpotsList() {
             </tr>
           </thead>
           <tbody>
-            {spots.map((spot) => <tr key={spot.id}><td>{spot.name}</td><td>{spot.description}</td><td><TagBubbles tags={spot.tags} /></td><td>{Number(spot.lat).toFixed(4)}</td><td>{Number(spot.lng).toFixed(4)}</td><td>{spot.id}</td><td><button onClick={() => { handleClick(spot) }}>Delete</button></td></tr>)}
+            {spots.map((spot) =>
+              <tr key={spot.id}>
+                <td>{spot.name}</td>
+                <td>{spot.description}</td>
+                <td><TagBubbles tags={spot.tags} /></td>
+                <td>{Number(spot.lat).toFixed(4)}</td>
+                <td>{Number(spot.lng).toFixed(4)}</td>
+                <td>{spot.id}</td>
+                <td><button onClick={() => { handleClick(spot) }}>Delete</button></td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
-      {showDeleteWarning && <DeleteWarningPopup toggleDeleteWarning={toggleDeleteWarning} deleteDocument={deleteDocument} currentSpotName={currentSpot.name} />}
+      {showDeleteWarning &&
+        <DeleteWarningPopup
+          toggleDeleteWarning={toggleDeleteWarning}
+          deleteDocument={deleteDocument}
+          currentSpotName={currentSpot.name}
+        />
+      }
     </div>
   )
 }
