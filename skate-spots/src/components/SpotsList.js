@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import DeleteWarningPopup from './DeleteWarningPopup'
 import '../styles/SpotsList.css'
-import TagBubbles from './TagBubbles'
+import TagBubblesStatic from './TagBubblesStatic'
 
 export default function SpotsList() {
   const [spots, setSpots] = useState([])
@@ -17,7 +17,7 @@ export default function SpotsList() {
       setSpots(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
     getSpots()
-  }, [spotCollectionRef])
+  }, [])
 
   const handleClick = (spot) => {
     setShowDeleteWarning(true)
@@ -56,7 +56,7 @@ export default function SpotsList() {
               <tr key={spot.id}>
                 <td>{spot.name}</td>
                 <td>{spot.description}</td>
-                <td><TagBubbles tags={spot.tags} /></td>
+                <td><TagBubblesStatic tags={spot.tags} /></td>
                 <td>{Number(spot.lat).toFixed(4)}</td>
                 <td>{Number(spot.lng).toFixed(4)}</td>
                 <td>{spot.id}</td>

@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { HiCursorClick } from 'react-icons/hi';
 import '../styles/AddSpot.css'
-import TagBubbles from './TagBubbles';
+import TagBubblesInteractive from './TagBubblesInteractive';
 
 export default function AddSpot() {
   const [lat, setLat] = useState('')
@@ -44,6 +44,12 @@ export default function AddSpot() {
 
   const handleTagChange = (e) => {
     setTag(e.target.value)
+  }
+
+  const handleDeleteClick = (clickedTag) => {
+    setTags(oldTags => {
+      return oldTags.filter(tag => tag !== clickedTag)
+    })
   }
 
   const handleSubmit = async (e) => {
@@ -117,7 +123,7 @@ export default function AddSpot() {
             <input type='radio' value='yes' name='skate-stopped' checked={skateStopped === 'yes'} onChange={handleRadioChange} />Yes
             <input type='radio' value='no' name='skate-stopped' checked={skateStopped === 'no'} onChange={handleRadioChange} />No
           </label><br></br>
-          <label htmlFor='tag'>Tags: {tags && <TagBubbles tags={tags} />}
+          <label htmlFor='tag'>Tags: {tags && <TagBubblesInteractive tags={tags} handleDeleteClick={handleDeleteClick} />}
             <input type='text' name='tag' id='tag' value={tag} onChange={handleTagChange} />
             <p className='tag-directions'>(Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind)</p>
           </label>

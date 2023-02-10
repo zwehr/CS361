@@ -1,0 +1,28 @@
+.TagBubblesInteractive .tag-container {
+  display: inline-block;
+  margin: 3px;
+  padding: 4px;
+  background-color: aqua;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+.TagBubblesInteractive .tag-text {
+  margin: 0;
+}
+
+.TagBubblesInteractive .delete-button,
+.TagBubblesInteractive p {
+  display: inline-block;
+}
+
+.TagBubblesInteractive .delete-button {
+  margin-left: 8px;
+  width: 10px;
+  font-weight: bold;
+  color: #f00;
+}
+
+.TagBubblesInteractive .delete-button:hover {
+  cursor: pointer;
+}

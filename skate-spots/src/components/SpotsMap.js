@@ -5,14 +5,14 @@ import { db } from '../firebase/config'
 import MapLegend from './MapLegend'
 import '../styles/SpotsMap.css'
 import pin from '../images/location-pin.png'
-import TagBubbles from './TagBubbles'
+import TagBubbles from './TagBubblesStatic'
 
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
   const [popupInfo, setPopupInfo] = useState(null)
 
   useEffect(() => {
-    console.log(`Length of spots variable is: ${spots.length}, which should equal and not exceed total number of spots.`)
+    console.log(`spots.length is: ${spots.length}, which should equal (NOT EXCEED) total number of spots.`)
   }, [spots])
 
   useEffect(() => {
