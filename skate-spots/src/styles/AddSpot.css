@@ -7,19 +7,38 @@
   font-size: 18px;
 }
 
-.AddSpot .form-container {
-  background-color: #ddd;
-  width: 300px;
-  margin: 0 auto 20px auto;
-  text-align: left;
-  padding: 10px;
+.AddSpot .map-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddSpot .half-map-form-container {
+  flex: 1;
+  margin: 10px;
+}
+
+.AddSpot .add-map-container {
   border-radius: 10px;
 }
 
+.AddSpot .form-container {
+  padding-left: 10px;
+  background-color: #ddd;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.AddSpot .add-instructions {
+  font-size: 16px;
+  margin: 10px;
+}
+
 .AddSpot textarea {
-  width: 90%;
-  height: 75px;
+  width: 95%;
+  height: 65px;
   padding: 20px;
+  resize: none;
 }
 
 .AddSpot input[type='text'],
@@ -42,8 +61,15 @@
   margin: 2px 0 12px 10px;
 }
 
+.AddSpot .tags-container {
+  height: 20px;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
 .AddSpot input[name='tag'] {
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .AddSpot .tag-directions {
