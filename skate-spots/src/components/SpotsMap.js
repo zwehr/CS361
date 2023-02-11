@@ -33,8 +33,8 @@ export default function SpotsMap() {
       <Map
         initialViewState={{
           longitude: -20,
-          latitude: 20,
-          zoom: 2.5
+          latitude: 25,
+          zoom: 2
         }}
         style={{ width: "100vw", height: "100vh" }}
         mapStyle="mapbox://styles/mapbox/streets-v9"

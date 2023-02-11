@@ -17,7 +17,7 @@ export default function AddSpot() {
   const [description, setDescription] = useState('')
 
   useEffect(() => {
-    // If user hit 'Space' key in tag text input, tag will be added to tags, input cleared
+    // If user hit 'Space' key in tag text input, tag will be added to tags arr, input cleared
     if (tag.charAt(tag.length - 1) === ' ') {
       // ...but if user hits 'Space' when field is blank, nothing happens (aside from the space being deleted)
       if (tag === ' ') {
