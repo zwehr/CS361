@@ -75,3 +75,12 @@
 .AddSpot .tag-directions {
   font-size: 14px;
 }
+
+.AddSpot input[type='submit'],
+.AddSpot input[type='file'] {
+  display: block;
+}
+
+.AddSpot input[type='submit'] {
+  margin: 20px 0 10px 0;
+}

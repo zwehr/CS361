@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import Map from 'react-map-gl'
 import { collection, addDoc } from 'firebase/firestore'
-import { db } from '../firebase/config'
+import { db, storage } from '../firebase/config'
+import { ref, uploadBytes } from 'firebase/storage'
 import { HiCursorClick } from 'react-icons/hi';
+import { v4 } from 'uuid';
 import '../styles/AddSpot.css'
 import TagBubblesInteractive from './TagBubblesInteractive';
 
@@ -15,6 +17,7 @@ export default function AddSpot() {
   const [tag, setTag] = useState('')
   const [tags, setTags] = useState(null)
   const [description, setDescription] = useState('')
+  const [images, setImages] = useState(null)
 
   useEffect(() => {
     // If user hit 'Space' key in tag text input, tag will be added to tags arr, input cleared
@@ -54,6 +57,12 @@ export default function AddSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const imageName = images.name + v4()
+    console.log(imageName)
+    const imageRef = ref(storage, imageName)
+    uploadBytes(imageRef, images).then(() => {
+      alert('image uploaded')
+    })
     try {
       const docRef = await addDoc(collection(db, "spots"), {
         lat: lat,
@@ -63,6 +72,7 @@ export default function AddSpot() {
         skateStopped: skateStopped,
         tags: tags,
         description: description,
+        image: imageName
       });
       alert("Spot saved successfully!");
       setLat('')
@@ -135,6 +145,9 @@ export default function AddSpot() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required></textarea>
+            </label>
+            <label htmlFor='photos'>Upload Photos:
+              <input type='file' name='photos' id='photos' onChange={(event) => { setImages(event.target.files[0]) }} />
             </label>
             <input type='submit' value='Submit' />
           </form>
