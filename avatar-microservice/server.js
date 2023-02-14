@@ -45,7 +45,7 @@ const colors = [
 app.use(cors())
 
 app.get('/', function (req, res) {
-  res.send('Hello from Avatar Microservice')
+  res.send('Try requesting /all or a /:color (blue, green, yellow, pink, orange, red')
 });
 
 app.get('/all', function (req, res) {
