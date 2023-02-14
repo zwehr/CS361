@@ -26,7 +26,7 @@ After requesting data, you will receive a response in the form of JSON. For exam
   "color": "red",\
   "width": "200px",\
   "height": "200px",\
-  "url": "https://firebasestorage.googleapis.com/v0/b/avatar-microservice.appspot.com/o/images%2Favatar-red.jpg?alt=media&token=d17e13b7-c35e-4ff2-bcca-448ab5bc219a"\
+  "url": "https://firebasestorage.googleapis.com/v0/b/avatar-microservice.appspot.com/o/images%2Favatar-red.jpg?alt=media&token=d17e13b7-c35e-4ff2-bcca-448ab5bc219a" \
 }
 
 The response includes the color, width, height, and link to where the resource is stored with Firebase Storage.
