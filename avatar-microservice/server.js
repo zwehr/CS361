@@ -45,7 +45,7 @@ const colors = [
 app.use(cors())
 
 app.get('/', function (req, res) {
-  res.send('Try requesting /all or a /:color (blue, green, yellow, pink, orange, red')
+  res.send('Try requesting /all or a /:color (blue, green, yellow, pink, orange, red)')
 });
 
 app.get('/all', function (req, res) {
@@ -82,5 +82,5 @@ app.get('/:color', function (req, res) {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log('Microservice app listening...')
 })

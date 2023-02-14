@@ -33,4 +33,4 @@ The response includes the color, width, height, and link to where the resource i
 
 ## UML Sequence Diagram
 
-Soon...
+![Sequence Diagram](sequence-diagram.png?raw=true "Sequence Diagram")
