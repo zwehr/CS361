@@ -56,7 +56,7 @@ app.get('/:color', function (req, res) {
   const color = req.params.color;
   switch (color) {
     case 'random':
-      const arrIndex = Math.floor(Math.random() * 6)
+      const arrIndex = Math.floor(Math.random() * (colors.length - 1))
       res.send(colors[arrIndex])
       break;
     case 'blue':

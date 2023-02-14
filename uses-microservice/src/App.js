@@ -5,15 +5,15 @@ function App() {
   const [avatarData, setAvatarData] = useState([{}, {}, {}, {}, {}, {}]);
 
   const posts = [
-    { userName: "Dan", userColor: "red", comment: "Wow sounds cool!" },
-    { userName: "Kim", userColor: "green", comment: "Love it <3<3<3" },
-    { userName: "Alex", userColor: "blue", comment: "This is amazing!!!" },
-    { userName: "Blake", userColor: "blue", comment: "Yuck, terrible!" },
-    { userName: "Darrell", userColor: "blue", comment: "@Blake why are you hating?" }
+    { userName: "Dan", comment: "Wow sounds cool!" },
+    { userName: "Kim", comment: "Love it <3<3<3" },
+    { userName: "Alex", comment: "This is amazing!!!" },
+    { userName: "Blake", comment: "Yuck, terrible!" },
+    { userName: "Darrell", comment: "@Blake why are you hating?" }
   ]
 
   useEffect(() => {
-    fetch("http://localhost:4000/all").then(
+    fetch("https://cs361-avatar-microservice.onrender.com/all").then(
       response => response.json()
     ).then(
       data => {
