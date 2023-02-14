@@ -6,17 +6,17 @@ This service provides different colored avatars that can be associated with user
 
 Requests can be made to the Node/Express server at https://cs361-avatar-microservice.onrender.com/
 
-Specifically, to request all avatars, make a request to /all:
+Specifically, to request all avatars, make a request to **/all**:
 
-https://cs361-avatar-microservice.onrender.com/**all**
+https://cs361-avatar-microservice.onrender.com/all
 
-For a single color, make a request to /:color (choosing one of red, green, blue, yellow, pink, or orange):
+For a single color, make a request to **/:color** (choosing one of red, green, blue, yellow, pink, or orange):
 
-https://cs361-avatar-microservice.onrender.com/**green**
+https://cs361-avatar-microservice.onrender.com/green
 
-You can also request a single random color:
+You can also request a single **random** color:
 
-https://cs361-avatar-microservice.onrender.com/**random**
+https://cs361-avatar-microservice.onrender.com/random
 
 ## How to Receive Data
 
