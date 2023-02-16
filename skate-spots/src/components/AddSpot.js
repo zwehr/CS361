@@ -188,6 +188,8 @@ export default function AddSpot() {
               <div className='youtube-links-container'>{youtubeLinks && <BubbleLinksInteractive links={youtubeLinks} handleDeleteYoutube={handleDeleteYoutube} />}</div>
               <input type='text' name='youtube-link' id='youtube-link' value={youtubeLink} onChange={handleYoutubeChange} />
               <p className='youtube-directions'>(Paste a Youtube link with timestamp and press SPACE to add it to the list.)</p>
+              <p className='youtube-directions'>NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong></p>
+              <p className='youtube-directions'>You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" (and take just the link from the embed code)</p>
             </label>
             <label htmlFor='description'>Description:
               <textarea
