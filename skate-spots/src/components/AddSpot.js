@@ -17,7 +17,8 @@ export default function AddSpot() {
   const [tag, setTag] = useState('')
   const [tags, setTags] = useState(null)
   const [description, setDescription] = useState('')
-  const [images, setImages] = useState(null)
+  const [imageFiles, setImageFiles] = useState([])
+  const [imageNamesRandomized, setImageNamesRandomized] = useState([])
 
   useEffect(() => {
     // If user hit 'Space' key in tag text input, tag will be added to tags arr, input cleared
@@ -31,6 +32,18 @@ export default function AddSpot() {
       }
     }
   }, [tag, tags])
+
+  useEffect(() => {
+    if (imageFiles.length > 0) {
+      setImageNamesRandomized([])
+      imageFiles.forEach((file) => {
+        console.log(file.name)
+        const newRandomName = file.name + v4()
+        console.log(newRandomName)
+        setImageNamesRandomized(oldArr => [...oldArr, newRandomName])
+      })
+    }
+  }, [imageFiles])
 
   const handleClick = (e) => {
     setLat(e.lngLat.lat)
@@ -55,14 +68,21 @@ export default function AddSpot() {
     })
   }
 
+  const handleFileChange = (e) => {
+    console.log('inside handleFileChange(), e.target.files is ', e.target.files)
+    setImageFiles([...e.target.files])
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const imageName = images.name + v4()
-    console.log(imageName)
-    const imageRef = ref(storage, imageName)
-    uploadBytes(imageRef, images).then(() => {
-      alert('image uploaded')
+    imageFiles.forEach((file, index) => {
+      console.log(file, index)
+      const imageRef = ref(storage, `spots/${imageNamesRandomized[index]}`)
+      uploadBytes(imageRef, file).then(() => {
+        alert('image uploaded')
+      })
     })
+
     try {
       const docRef = await addDoc(collection(db, "spots"), {
         lat: lat,
@@ -72,7 +92,7 @@ export default function AddSpot() {
         skateStopped: skateStopped,
         tags: tags,
         description: description,
-        image: imageName
+        images: imageNamesRandomized
       });
       alert("Spot saved successfully!");
       setLat('')
@@ -147,7 +167,7 @@ export default function AddSpot() {
                 required></textarea>
             </label>
             <label htmlFor='photos'>Upload Photos:
-              <input type='file' name='photos' id='photos' onChange={(event) => { setImages(event.target.files[0]) }} />
+              <input type='file' multiple name='photos' id='photos' onChange={handleFileChange} />
             </label>
             <input type='submit' value='Submit' />
           </form>

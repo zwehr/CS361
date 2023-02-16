@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Map, { Marker, Popup } from 'react-map-gl'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase/config'
+import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 import MapLegend from './MapLegend'
 import '../styles/SpotsMap.css'
 import pin from '../images/location-pin.png'
@@ -10,6 +11,7 @@ import TagBubbles from './TagBubblesStatic'
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
   const [popupInfo, setPopupInfo] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
 
   useEffect(() => {
     console.log(`spots.length is: ${spots.length}, which should equal (NOT EXCEED) total number of spots.`)
@@ -26,6 +28,16 @@ export default function SpotsMap() {
       currSpots.push({ ...spot.data(), id: spot.id })
     });
     setSpots(currSpots)
+  }
+
+  const getImage = () => {
+    console.log('defined... time to find image URL')
+    const storage = getStorage()
+    getDownloadURL(ref(storage, popupInfo.image))
+      .then((url) => {
+        console.log('url is ', url)
+        setImageUrl(url)
+      })
   }
 
   return (
@@ -68,6 +80,7 @@ export default function SpotsMap() {
               <p><strong>Type:</strong> {popupInfo.type}</p>
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
+              <img className='spot-image' src={imageUrl} />
               <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
           </Popup>

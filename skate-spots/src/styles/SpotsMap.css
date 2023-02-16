@@ -13,3 +13,11 @@
 .SpotsMap .popup {
   text-align: left;
 }
+
+.SpotsMap .spot-image {
+  width: 225px;
+}
+
+.SpotsMap .spot-image:hover {
+  cursor: default;
+}
