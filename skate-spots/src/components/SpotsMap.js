@@ -11,7 +11,9 @@ import TagBubbles from './TagBubblesStatic'
 export default function SpotsMap() {
   const [spots, setSpots] = useState([])
   const [popupInfo, setPopupInfo] = useState(null)
-  const [imageUrl, setImageUrl] = useState(null)
+  const [imageUrls, setImageUrls] = useState([])
+  const [imageIndex, setImageIndex] = useState(0)
+  const [popupClicked, setPopupClicked] = useState(false)
 
   useEffect(() => {
     console.log(`spots.length is: ${spots.length}, which should equal (NOT EXCEED) total number of spots.`)
@@ -30,14 +32,32 @@ export default function SpotsMap() {
     setSpots(currSpots)
   }
 
-  const getImage = () => {
-    console.log('defined... time to find image URL')
-    const storage = getStorage()
-    getDownloadURL(ref(storage, popupInfo.image))
-      .then((url) => {
-        console.log('url is ', url)
-        setImageUrl(url)
+  // Loads images when popupInfo changes (when Marker is clicked)
+  useEffect(() => {
+    if (popupClicked === true)
+      popupInfo.images.forEach((image) => {
+        const storage = getStorage()
+        getDownloadURL(ref(storage, `spots/${image}`))
+          .then((url) => {
+            setImageUrls(oldArr => [...oldArr, url])
+          })
       })
+  }, [popupInfo])
+
+  // set state variables back to defaults when Popup closes
+  const resetMap = () => {
+    setPopupInfo(null)
+    setImageUrls([])
+    setPopupClicked(false)
+    setImageIndex(0)
+  }
+
+  const incrementImageIndex = () => {
+    if (imageIndex === imageUrls.length - 1) {
+      setImageIndex(0)
+    } else {
+      setImageIndex(oldIndex => oldIndex + 1)
+    }
   }
 
   return (
@@ -60,7 +80,9 @@ export default function SpotsMap() {
             latitude={spot.lat}
             longitude={spot.lng}
             onClick={e => {
+              resetMap()
               e.originalEvent.stopPropagation();
+              setPopupClicked(true)
               setPopupInfo(spot)
             }}
           >
@@ -73,14 +95,15 @@ export default function SpotsMap() {
             anchor="top"
             longitude={Number(popupInfo.lng)}
             latitude={Number(popupInfo.lat)}
-            onClose={() => setPopupInfo(null)}
+            onClose={resetMap}
+            focusAfterOpen={true}
           >
             <div>
               <h3>{popupInfo.name}</h3>
               <p><strong>Type:</strong> {popupInfo.type}</p>
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
-              <img className='spot-image' src={imageUrl} />
+              <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
               <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
           </Popup>
