@@ -61,18 +61,25 @@
   margin: 2px 0 12px 10px;
 }
 
-.AddSpot .tags-container {
+.AddSpot .tags-container,
+.AddSpot .youtube-links-container {
   height: 20px;
   width: 100%;
   display: inline-block;
   margin-bottom: 5px;
 }
 
-.AddSpot input[name='tag'] {
+.AddSpot input[name='tag'],
+.AddSpot input[name='youtube-link'] {
   margin-top: 12px;
 }
 
-.AddSpot .tag-directions {
+.AddSpot input[name='youtube-link'] {
+  width: 300px;
+}
+
+.AddSpot .tag-directions,
+.AddSpot .youtube-directions {
   font-size: 14px;
 }
 

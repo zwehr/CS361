@@ -7,6 +7,7 @@ import { HiCursorClick } from 'react-icons/hi';
 import { v4 } from 'uuid';
 import '../styles/AddSpot.css'
 import TagBubblesInteractive from './TagBubblesInteractive';
+import BubbleLinksInteractive from './BubbleLinksInteractive'
 
 export default function AddSpot() {
   const [lat, setLat] = useState('')
@@ -15,7 +16,9 @@ export default function AddSpot() {
   const [type, setType] = useState('handrail')
   const [skateStopped, setSkateStopped] = useState('no')
   const [tag, setTag] = useState('')
-  const [tags, setTags] = useState(null)
+  const [tags, setTags] = useState([])
+  const [youtubeLink, setYoutubeLink] = useState('')
+  const [youtubeLinks, setYoutubeLinks] = useState([])
   const [description, setDescription] = useState('')
   const [imageFiles, setImageFiles] = useState([])
   const [imageNamesRandomized, setImageNamesRandomized] = useState([])
@@ -32,6 +35,18 @@ export default function AddSpot() {
       }
     }
   }, [tag, tags])
+
+  // Same as above for YouTube links (combine these later)
+  useEffect(() => {
+    if (youtubeLink.charAt(youtubeLink.length - 1) === ' ') {
+      if (youtubeLink === ' ') {
+        setYoutubeLink('')
+      } else {
+        youtubeLinks ? setYoutubeLinks([...youtubeLinks, youtubeLink.trim()]) : setYoutubeLinks([youtubeLink.trim()])
+        setYoutubeLink('')
+      }
+    }
+  }, [youtubeLink, youtubeLinks])
 
   useEffect(() => {
     if (imageFiles.length > 0) {
@@ -62,9 +77,19 @@ export default function AddSpot() {
     setTag(e.target.value)
   }
 
-  const handleDeleteClick = (clickedTag) => {
+  const handleYoutubeChange = (e) => {
+    setYoutubeLink(e.target.value)
+  }
+
+  const handleDeleteTag = (clickedTag) => {
     setTags(oldTags => {
       return oldTags.filter(tag => tag !== clickedTag)
+    })
+  }
+
+  const handleDeleteYoutube = (clickedYoutubeLink) => {
+    setYoutubeLinks(oldLinks => {
+      return oldLinks.filter(link => link !== clickedYoutubeLink)
     })
   }
 
@@ -91,6 +116,7 @@ export default function AddSpot() {
         type: type,
         skateStopped: skateStopped,
         tags: tags,
+        youtubeLinks: youtubeLinks,
         description: description,
         images: imageNamesRandomized
       });
@@ -154,9 +180,14 @@ export default function AddSpot() {
               <input type='radio' value='no' name='skate-stopped' checked={skateStopped === 'no'} onChange={handleRadioChange} />No
             </label><br></br>
             <label htmlFor='tag'>Tags:
-              <div className='tags-container'>{tags && <TagBubblesInteractive tags={tags} handleDeleteClick={handleDeleteClick} />}</div>
+              <div className='tags-container'>{tags && <TagBubblesInteractive tags={tags} handleDeleteTag={handleDeleteTag} />}</div>
               <input type='text' name='tag' id='tag' value={tag} onChange={handleTagChange} />
               <p className='tag-directions'>(Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind)</p>
+            </label>
+            <label htmlFor='youtube-link'>Youtube Links:
+              <div className='youtube-links-container'>{youtubeLinks && <BubbleLinksInteractive links={youtubeLinks} handleDeleteYoutube={handleDeleteYoutube} />}</div>
+              <input type='text' name='youtube-link' id='youtube-link' value={youtubeLink} onChange={handleYoutubeChange} />
+              <p className='youtube-directions'>(Paste a Youtube link with timestamp and press SPACE to add it to the list.)</p>
             </label>
             <label htmlFor='description'>Description:
               <textarea

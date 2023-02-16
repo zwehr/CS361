@@ -10,7 +10,7 @@ export default function TagBubblesInteractive(props) {
           key={uuidv4()}
           className='tag-container'>
           <p className='tag-text'>{tag}</p>
-          <div className='delete-button' onClick={() => props.handleDeleteClick(tag)}>X</div>
+          <div className='delete-button' onClick={() => props.handleDeleteTag(tag)}>X</div>
         </div>)}
     </div>
   )

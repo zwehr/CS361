@@ -1,0 +1,28 @@
+.BubbleLinksInteractive .link-container {
+  display: inline-block;
+  margin: 3px;
+  padding: 4px;
+  background-color: aqua;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+.BubbleLinksInteractive .url {
+  margin: 0;
+}
+
+.BubbleLinksInteractive .delete-button,
+.BubbleLinksInteractive p {
+  display: inline-block;
+}
+
+.BubbleLinksInteractive .delete-button {
+  margin-left: 8px;
+  width: 10px;
+  font-weight: bold;
+  color: #f00;
+}
+
+.BubbleLinksInteractive .delete-button:hover {
+  cursor: pointer;
+}

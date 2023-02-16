@@ -13,6 +13,7 @@ export default function SpotsMap() {
   const [popupInfo, setPopupInfo] = useState(null)
   const [imageUrls, setImageUrls] = useState([])
   const [imageIndex, setImageIndex] = useState(0)
+  const [youtubeIndex, setYoutubeIndex] = useState(0)
   const [popupClicked, setPopupClicked] = useState(false)
 
   useEffect(() => {
@@ -104,6 +105,15 @@ export default function SpotsMap() {
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
               <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
+              <iframe
+                width="560"
+                height="315"
+                src={popupInfo.youtubeLinks[youtubeIndex]}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
               <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
           </Popup>
