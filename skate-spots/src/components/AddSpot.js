@@ -8,6 +8,7 @@ import { v4 } from 'uuid';
 import '../styles/AddSpot.css'
 import TagBubblesInteractive from './TagBubblesInteractive';
 import BubbleLinksInteractive from './BubbleLinksInteractive'
+import UploadModal from './UploadModal'
 
 export default function AddSpot() {
   const [lat, setLat] = useState('')
@@ -22,6 +23,7 @@ export default function AddSpot() {
   const [description, setDescription] = useState('')
   const [imageFiles, setImageFiles] = useState([])
   const [imageNamesRandomized, setImageNamesRandomized] = useState([])
+  const [uploadInProgress, setUploadInProgress] = useState(false)
 
   useEffect(() => {
     // If user hit 'Space' key in tag text input, tag will be added to tags arr, input cleared
@@ -100,11 +102,12 @@ export default function AddSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setUploadInProgress(true)
     imageFiles.forEach((file, index) => {
       console.log(file, index)
       const imageRef = ref(storage, `spots/${imageNamesRandomized[index]}`)
       uploadBytes(imageRef, file).then(() => {
-        alert('image uploaded')
+        console.log('image uploaded')
       })
     })
 
@@ -120,6 +123,7 @@ export default function AddSpot() {
         description: description,
         images: imageNamesRandomized
       });
+      setUploadInProgress(false)
       alert("Spot saved successfully!");
       setLat('')
       setLng('')
@@ -207,6 +211,7 @@ export default function AddSpot() {
           </form>
         </div>
       </div>
+      {uploadInProgress && <UploadModal />}
     </div >
   )
 }
