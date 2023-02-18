@@ -106,13 +106,14 @@ export default function SpotsMap() {
               <p><strong>Description:</strong> {popupInfo.description}</p>
               <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
               <iframe
-                width="560"
-                height="315"
+                /* Default width and height are 560 and 315 respectively. */
+                width="336"
+                height="189"
                 src={popupInfo.youtubeLinks[youtubeIndex]}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
+                allowFullScreen>
               </iframe>
               <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
