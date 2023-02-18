@@ -1,3 +1,7 @@
+.SpotsList .h2-header {
+  margin-top: 50px;
+}
+
 .SpotsList button {
   display: inline-block;
 }

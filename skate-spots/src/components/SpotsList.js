@@ -37,7 +37,7 @@ export default function SpotsList() {
 
   return (
     <div className='SpotsList'>
-      <h2>Spots List</h2>
+      <h2 className='h2-header'>Spots List</h2>
       <div className='table-container'>
         <table>
           <thead>

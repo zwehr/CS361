@@ -1,7 +1,9 @@
+import '../styles/Login.css'
+
 export default function Login() {
   return (
-    <div className='Log In'>
-      <h2>Login</h2>
+    <div className='Login'>
+      <h2 className='h2-header'>Login</h2>
       <form>
         <label htmlFor='email'>
           <input type='email' name='email' id='email'></input>

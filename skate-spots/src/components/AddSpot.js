@@ -115,7 +115,7 @@ export default function AddSpot() {
 
   return (
     <div className='AddSpot'>
-      <h2>Add Spot</h2>
+      <h2 className='h2-header'>Add Spot</h2>
       <div className='map-form-container'>
         <div className='add-map-container half-map-form-container'>
           <Map

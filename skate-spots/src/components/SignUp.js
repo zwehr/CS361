@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { UserAuth } from '../context/AuthContext'
+import '../styles/SignUp.css'
 
 export default function SignUp() {
   const [email, setEmail] = useState('')
@@ -21,7 +22,7 @@ export default function SignUp() {
 
   return (
     <div className='SignUp'>
-      <h2>Sign Up</h2>
+      <h2 className='h2-header'>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor='email'>
           <input onChange={(e) => setEmail(e.target.value)} type='email' name='email' id='email'></input>

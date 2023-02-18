@@ -12,7 +12,6 @@ import { AuthContextProvider } from './context/AuthContext'
 function App() {
   return (
     <div className='App'>
-      <h1>Skate Spots App</h1>
       <BrowserRouter>
         <Nav />
         <AuthContextProvider>

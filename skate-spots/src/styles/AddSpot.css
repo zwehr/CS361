@@ -3,6 +3,10 @@
   cursor: crosshair;
 }
 
+.AddSpot .h2-header {
+  margin-top: 50px;
+}
+
 .AddSpot p {
   font-size: 18px;
 }
