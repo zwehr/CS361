@@ -61,21 +61,19 @@
   margin: 2px 0 12px 10px;
 }
 
-.AddSpot .tags-container,
-.AddSpot .youtube-links-container {
+.AddSpot .tags-container {
   height: 20px;
   width: 100%;
   display: inline-block;
   margin-bottom: 5px;
 }
 
-.AddSpot input[name='tag'],
-.AddSpot input[name='youtube-link'] {
+.AddSpot input[name='tag'] {
   margin-top: 12px;
 }
 
-.AddSpot input[name='youtube-link'] {
-  width: 300px;
+.AddSpot input[name='youtube'] {
+  width: 375px;
 }
 
 .AddSpot .tag-directions,
