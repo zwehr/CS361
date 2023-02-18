@@ -175,6 +175,7 @@ export default function AddSpot() {
                 <option value='ledge'>Ledge</option>
                 <option value='pad'>Manual Pad</option>
                 <option value='hubba'>Hubba</option>
+                <option value='bank'>Bank</option>
                 <option value='curb'>Curb</option>
                 <option value='bump'>Bump to bar</option>
                 <option value='misc'>Misc</option>
