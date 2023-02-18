@@ -13,6 +13,7 @@ export default function SpotsMap() {
   const [popupInfo, setPopupInfo] = useState(null)
   const [imageUrls, setImageUrls] = useState([])
   const [imageIndex, setImageIndex] = useState(0)
+  // YouTube index isn't currently changing, but will in the future.
   const [youtubeIndex, setYoutubeIndex] = useState(0)
   const [popupClicked, setPopupClicked] = useState(false)
 
@@ -105,7 +106,7 @@ export default function SpotsMap() {
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
               <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
-              <iframe
+              {popupInfo.youtubeLinks[youtubeIndex] && <iframe
                 /* Default width and height are 560 and 315 respectively. */
                 width="336"
                 height="189"
@@ -114,7 +115,7 @@ export default function SpotsMap() {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen>
-              </iframe>
+              </iframe>}
               <strong>Tags:</strong> <TagBubbles tags={popupInfo.tags} />
             </div>
           </Popup>
