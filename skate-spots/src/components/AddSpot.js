@@ -18,8 +18,7 @@ export default function AddSpot() {
   const [skateStopped, setSkateStopped] = useState('no')
   const [tag, setTag] = useState('')
   const [tags, setTags] = useState([])
-  const [youtubeLink, setYoutubeLink] = useState('')
-  const [youtubeLinks, setYoutubeLinks] = useState([])
+  const [youtube, setYoutube] = useState('')
   const [description, setDescription] = useState('')
   const [imageFiles, setImageFiles] = useState([])
   const [imageNamesRandomized, setImageNamesRandomized] = useState([])
@@ -37,18 +36,6 @@ export default function AddSpot() {
       }
     }
   }, [tag, tags])
-
-  // Same as above for YouTube links (combine these later)
-  useEffect(() => {
-    if (youtubeLink.charAt(youtubeLink.length - 1) === ' ') {
-      if (youtubeLink === ' ') {
-        setYoutubeLink('')
-      } else {
-        youtubeLinks ? setYoutubeLinks([...youtubeLinks, youtubeLink.trim()]) : setYoutubeLinks([youtubeLink.trim()])
-        setYoutubeLink('')
-      }
-    }
-  }, [youtubeLink, youtubeLinks])
 
   useEffect(() => {
     if (imageFiles.length > 0) {
@@ -79,19 +66,9 @@ export default function AddSpot() {
     setTag(e.target.value)
   }
 
-  const handleYoutubeChange = (e) => {
-    setYoutubeLink(e.target.value)
-  }
-
   const handleDeleteTag = (clickedTag) => {
     setTags(oldTags => {
       return oldTags.filter(tag => tag !== clickedTag)
-    })
-  }
-
-  const handleDeleteYoutube = (clickedYoutubeLink) => {
-    setYoutubeLinks(oldLinks => {
-      return oldLinks.filter(link => link !== clickedYoutubeLink)
     })
   }
 
@@ -119,7 +96,7 @@ export default function AddSpot() {
         type: type,
         skateStopped: skateStopped,
         tags: tags,
-        youtubeLinks: youtubeLinks,
+        youtubeLinks: [youtube],
         description: description,
         images: imageNamesRandomized
       });
@@ -129,8 +106,8 @@ export default function AddSpot() {
       setLng('')
       setName('')
       setDescription('')
+      setYoutube('')
       setTags([])
-      setYoutubeLinks([])
     } catch (e) {
       alert("Error adding document: ", e);
     }
@@ -190,13 +167,11 @@ export default function AddSpot() {
               <input type='text' name='tag' id='tag' value={tag} onChange={handleTagChange} />
               <p className='tag-directions'>(Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind)</p>
             </label>
-            <label htmlFor='youtube-link'>Youtube Links:
-              <div className='youtube-links-container'>{youtubeLinks && <BubbleLinksInteractive links={youtubeLinks} handleDeleteYoutube={handleDeleteYoutube} />}</div>
-              <input type='text' name='youtube-link' id='youtube-link' value={youtubeLink} onChange={handleYoutubeChange} />
-              <p className='youtube-directions'>(Paste a Youtube link with timestamp and press SPACE to add it to the list.)</p>
-              <p className='youtube-directions'>NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong></p>
-              <p className='youtube-directions'>You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" (and take just the link from the embed code).</p>
+            <label htmlFor="youtube">YouTube Link:
+              <input type="text" name="youtube" id="youtube" value={youtube} onChange={(e) => setYoutube(e.target.value)} required />
             </label>
+            <p className='youtube-directions'>NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong></p>
+            <p className='youtube-directions'>You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" on YouTube (and take only the link from the embed code).</p>
             <label htmlFor='description'>Description:
               <textarea
                 name='description'
