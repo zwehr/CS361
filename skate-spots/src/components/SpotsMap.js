@@ -44,6 +44,9 @@ export default function SpotsMap() {
             setImageUrls(oldArr => [...oldArr, url])
           })
       })
+    console.log('about to fetch')
+    fetch(`https://cs361weather.onrender.com/weather?lat=48.8566&long=2.3522`)
+      .then((response) => console.log(response));
   }, [popupInfo])
 
   // set state variables back to defaults when Popup closes
