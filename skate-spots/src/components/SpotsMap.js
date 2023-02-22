@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Map, { Marker, Popup } from 'react-map-gl'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase/config'
@@ -9,8 +10,11 @@ import pin from '../images/location-pin.png'
 import TagBubbles from './TagBubblesStatic'
 
 export default function SpotsMap() {
+  const defaultSpot = { name: 'test', lat: -90, lng: 10, id: 'abc', youtubeLinks: ['https://www.youtube.com/embed/nufgmoSNq0E?start=24'], tags: ['one'] }
+
   const [spots, setSpots] = useState([])
-  const [popupInfo, setPopupInfo] = useState(null)
+  const [popupInfo, setPopupInfo] = useState(defaultSpot)
+  const [weatherData, setWeatherData] = useState({})
   const [imageUrls, setImageUrls] = useState([])
   const [imageIndex, setImageIndex] = useState(0)
   // YouTube index isn't currently changing, but will in the future.
@@ -44,14 +48,17 @@ export default function SpotsMap() {
             setImageUrls(oldArr => [...oldArr, url])
           })
       })
-    console.log('about to fetch')
-    fetch(`https://cs361weather.onrender.com/weather?lat=48.8566&long=2.3522`)
-      .then((response) => console.log(response));
+    axios.get(`https://cs361weather.onrender.com/weather?lat=${popupInfo.lat !== null ? popupInfo.lat : 0}&long=${popupInfo.lng}`)
+      .then(res => {
+        setWeatherData(res.data)
+        console.log(weatherData)
+        console.log(popupInfo)
+      })
   }, [popupInfo])
 
   // set state variables back to defaults when Popup closes
   const resetMap = () => {
-    setPopupInfo(null)
+    setPopupInfo(defaultSpot)
     setImageUrls([])
     setPopupClicked(false)
     setImageIndex(0)
@@ -106,6 +113,7 @@ export default function SpotsMap() {
             <div>
               <h3>{popupInfo.name}</h3>
               <p><strong>Type:</strong> {popupInfo.type}</p>
+              <p><strong>Weather:</strong> {weatherData.temp_fahrenheit} degrees F ({weatherData.phrase})</p>
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
               <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
