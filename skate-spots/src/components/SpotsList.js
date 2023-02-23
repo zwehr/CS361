@@ -1,6 +1,7 @@
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
+import { Link } from 'react-router-dom'
 import DeleteWarningPopup from './DeleteWarningPopup'
 import '../styles/SpotsList.css'
 import TagBubblesStatic from './TagBubblesStatic'
@@ -19,7 +20,7 @@ export default function SpotsList() {
     getSpots()
   }, [])
 
-  const handleClick = (spot) => {
+  const handleDeleteClick = (spot) => {
     setShowDeleteWarning(true)
     setCurrentSpot(spot)
   }
@@ -47,7 +48,7 @@ export default function SpotsList() {
               <th>Tags</th>
               <th>Latitude</th>
               <th>Longitude</th>
-              <th>ID</th>
+              <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -59,8 +60,8 @@ export default function SpotsList() {
                 <td><TagBubblesStatic tags={spot.tags} /></td>
                 <td>{Number(spot.lat).toFixed(4)}</td>
                 <td>{Number(spot.lng).toFixed(4)}</td>
-                <td>{spot.id}</td>
-                <td><button onClick={() => { handleClick(spot) }}>Delete</button></td>
+                <td><Link to={`edit-spot/${spot.id}`}><button>Edit</button></Link></td>
+                <td><button onClick={() => { handleDeleteClick(spot) }}>Delete</button></td>
               </tr>
             )}
           </tbody>

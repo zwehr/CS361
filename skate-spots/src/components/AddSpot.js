@@ -7,7 +7,6 @@ import { HiCursorClick } from 'react-icons/hi';
 import { v4 } from 'uuid';
 import '../styles/AddSpot.css'
 import TagBubblesInteractive from './TagBubblesInteractive';
-import BubbleLinksInteractive from './BubbleLinksInteractive'
 import UploadModal from './UploadModal'
 
 export default function AddSpot() {

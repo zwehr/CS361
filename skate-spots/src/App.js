@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddSpot from './components/AddSpot'
+import EditSpot from './components/EditSpot'
 import Nav from './components/Nav'
 import SpotsMap from './components/SpotsMap'
 import Login from './components/Login'
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={<SpotsMap />} />
             <Route path='/add-spot' element={<AddSpot />} />
+            <Route path='/edit-spot' element={<EditSpot />} />
             <Route path='/login' element={<Login />} />
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/account' element={<Account />} />
