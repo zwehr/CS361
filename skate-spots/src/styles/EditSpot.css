@@ -1,3 +1,77 @@
 .EditSpot h2 {
   margin-top: 50px;
 }
+
+.EditSpot p {
+  font-size: 18px;
+}
+
+.EditSpot .form-container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #ddd;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.EditSpot .add-instructions {
+  font-size: 16px;
+  margin: 10px;
+}
+
+.EditSpot textarea {
+  width: 95%;
+  height: 65px;
+  padding: 20px;
+  resize: none;
+}
+
+.EditSpot input[type='text'],
+.EditSpot textarea,
+.EditSpot select {
+  display: block;
+  padding: 4px 2px;
+  margin: 2px 0 12px 10px;
+}
+
+.EditSpot input[type='select'] {
+  margin: 2px 0 30px 10px;
+}
+
+.EditSpot input[type='radio'] {
+  margin: 2px 0 12px 10px;
+}
+
+.EditSpot input[type='radio'] {
+  margin: 2px 0 12px 10px;
+}
+
+.EditSpot .tags-container {
+  height: 20px;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.EditSpot input[name='tag'] {
+  margin-top: 12px;
+}
+
+.EditSpot input[name='youtube'] {
+  width: 375px;
+}
+
+.EditSpot .tag-directions,
+.EditSpot .youtube-directions {
+  font-size: 14px;
+}
+
+.AddSpot input[type='submit'],
+.AddSpot input[type='file'] {
+  display: block;
+}
+
+.AddSpot input[type='submit'] {
+  margin: 20px 0 10px 0;
+}
