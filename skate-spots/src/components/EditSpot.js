@@ -87,14 +87,20 @@ export default function EditSpot() {
   }
 
   const deleteYoutubeLink = (clickedLink) => {
-    alert(clickedLink)
     setYoutubeLinks(oldLinks => oldLinks.filter(link => link !== clickedLink))
+  }
+
+  const checkKeyDown = (e) => {
+    if (e.code === 'Enter') {
+      e.preventDefault()
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     setUpdateInProgress(true)
+
     newImageFiles.forEach((image) => {
       const imageRef = ref(storage, `spots/${image.name}`)
       uploadBytes(imageRef, image.file).then(() => {
@@ -102,6 +108,7 @@ export default function EditSpot() {
       })
     })
 
+    // Gets all the image names in one place before updating with arrayUnion() below.
     const imageNames = []
     newImageFiles.forEach((file) => {
       imageNames.push(file.name)
@@ -122,7 +129,7 @@ export default function EditSpot() {
         images: arrayUnion(...imageNames)
       });
       setUpdateInProgress(false)
-      alert("Spot updated successfully!");
+      alert('Spot updated successfully!');
     } catch (e) {
       alert('Error adding document, check console');
       console.log(e)
@@ -133,7 +140,7 @@ export default function EditSpot() {
     <div className='EditSpot'>
       <h2>Edit Spot</h2>
       <div className='form-container'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onKeyDown={(e) => checkKeyDown(e)}>
           <label htmlFor='lat'>Latitude:
             <input type='text' name='lat' id='lat' className='block-input' value={lat} onChange={(e) => setLat(e.target.value)} required />
           </label>
@@ -169,7 +176,7 @@ export default function EditSpot() {
           <label htmlFor="currYoutube">Current YouTube Links:
             <Links links={youtubeLinks} delete={deleteYoutubeLink} />
             <input type="text" name="currYoutube" id="currYoutube" className='youtube-input' value={currYoutube} onChange={(e) => setCurrYoutube(e.target.value)} />
-            <button className='add-youtube' onClick={addYoutubeLink}>Add New YouTube Link</button>
+            <input type='button' value='Add Youtube Link' className='add-youtube' onClick={addYoutubeLink} />
           </label>
           <p className='youtube-directions'>NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong></p>
           <p className='youtube-directions'>You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" on YouTube (and take only the link from the embed code).</p>
@@ -185,9 +192,9 @@ export default function EditSpot() {
             <input type='file' multiple name='photos' id='photos' onChange={handleFileChange} />
           </label>
           <ul>
-            {currImageFileNames.length > 0 && <p>Current files:</p>}
+            {currImageFileNames.length > 0 && <p><strong>Current files: </strong></p>}
             {currImageFileNames.map((image) => <li>{image}</li>)}
-            {newImageFiles.length > 0 && <p>New files to be added: </p>}
+            {newImageFiles.length > 0 && <p><strong>New files to be added: </strong></p>}
             {newImageFiles.map((image) => <li>{image.name}</li>)}
           </ul>
           <input type='submit' value='Confirm Changes' />
