@@ -3,10 +3,10 @@ import Map from 'react-map-gl'
 import { collection, addDoc } from 'firebase/firestore'
 import { db, storage } from '../firebase/config'
 import { ref, uploadBytes } from 'firebase/storage'
-import { HiCursorClick } from 'react-icons/hi';
-import { v4 } from 'uuid';
+import { HiCursorClick } from 'react-icons/hi'
+import { v4 } from 'uuid'
 import '../styles/AddSpot.css'
-import TagBubblesInteractive from './TagBubblesInteractive';
+import TagBubblesInteractive from './TagBubblesInteractive'
 import UploadModal from './UploadModal'
 
 export default function AddSpot() {
@@ -78,7 +78,9 @@ export default function AddSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     setUploadInProgress(true)
+
     imageFiles.forEach((file, index) => {
       console.log(file, index)
       const imageRef = ref(storage, `spots/${imageNamesRandomized[index]}`)

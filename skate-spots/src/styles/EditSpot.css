@@ -3,12 +3,12 @@
 }
 
 .EditSpot p {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .EditSpot .form-container {
-  width: 500px;
-  margin: 0 auto;
+  width: 575px;
+  margin: 0 auto 30px auto;
   padding: 10px;
   background-color: #ddd;
   text-align: left;
@@ -27,7 +27,7 @@
   resize: none;
 }
 
-.EditSpot input[type='text'],
+.EditSpot .block-input,
 .EditSpot textarea,
 .EditSpot select {
   display: block;
@@ -58,7 +58,7 @@
   margin-top: 12px;
 }
 
-.EditSpot input[name='youtube'] {
+.EditSpot input[name='currYoutube'] {
   width: 375px;
 }
 
@@ -67,11 +67,11 @@
   font-size: 14px;
 }
 
-.AddSpot input[type='submit'],
-.AddSpot input[type='file'] {
-  display: block;
+.EditSpot button {
+  margin: 5px;
 }
 
-.AddSpot input[type='submit'] {
-  margin: 20px 0 10px 0;
+.EditSpot input[type='submit'] {
+  display: block;
+  margin: 5px auto;
 }

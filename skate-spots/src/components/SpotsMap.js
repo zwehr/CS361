@@ -38,7 +38,7 @@ export default function SpotsMap() {
     setSpots(currSpots)
   }
 
-  // Loads images when popupInfo changes (when Marker is clicked)
+  // Loads images and weather data when popupInfo changes (when Marker is clicked)
   useEffect(() => {
     if (popupClicked === true)
       popupInfo.images.forEach((image) => {
@@ -48,11 +48,10 @@ export default function SpotsMap() {
             setImageUrls(oldArr => [...oldArr, url])
           })
       })
-    axios.get(`https://cs361weather.onrender.com/weather?lat=${popupInfo.lat !== null ? popupInfo.lat : 0}&long=${popupInfo.lng}`)
+    axios.get(`https://cs361weather.onrender.com/weather?lat=${popupInfo.lat}&long=${popupInfo.lng}`)
       .then(res => {
+        console.log('Weather data from microservice is ', res.data)
         setWeatherData(res.data)
-        console.log(weatherData)
-        console.log(popupInfo)
       })
   }, [popupInfo])
 
@@ -98,7 +97,7 @@ export default function SpotsMap() {
               setPopupInfo(spot)
             }}
           >
-            <img src={pin} />
+            <img alt='map pin' src={pin} />
           </Marker>
         ))}
 
@@ -116,7 +115,7 @@ export default function SpotsMap() {
               <p><strong>Weather:</strong> {weatherData.temp_fahrenheit} degrees F ({weatherData.phrase})</p>
               <p><strong>Skate-stopped:</strong> {popupInfo.skateStopped}</p>
               <p><strong>Description:</strong> {popupInfo.description}</p>
-              <img className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
+              <img alt='skate spot' className='spot-image' onClick={incrementImageIndex} src={imageUrls[imageIndex]} />
               {popupInfo.youtubeLinks[youtubeIndex] && <iframe
                 /* Default width and height are 560 and 315 respectively. */
                 width="336"

@@ -60,7 +60,7 @@ export default function SpotsList() {
                 <td><TagBubblesStatic tags={spot.tags} /></td>
                 <td>{Number(spot.lat).toFixed(4)}</td>
                 <td>{Number(spot.lng).toFixed(4)}</td>
-                <td><Link to={`/edit-spot/${spot.id}`}><button>Edit</button></Link></td>
+                <td><Link to={`/edit-spot/${spot.id}`} state={{ spotData: spot }}><button>Edit</button></Link></td>
                 <td><button onClick={() => { handleDeleteClick(spot) }}>Delete</button></td>
               </tr>
             )}
