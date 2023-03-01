@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { ref, uploadBytes } from 'firebase/storage'
@@ -25,6 +25,7 @@ export default function EditSpot() {
 
   const params = useParams()
   const location = useLocation()
+  const navigate = useNavigate()
   const { spotData } = location.state
 
   useEffect(() => {
@@ -90,6 +91,7 @@ export default function EditSpot() {
     setYoutubeLinks(oldLinks => oldLinks.filter(link => link !== clickedLink))
   }
 
+  // Prevents 'Enter' from submitting form
   const checkKeyDown = (e) => {
     if (e.code === 'Enter') {
       e.preventDefault()
@@ -130,6 +132,7 @@ export default function EditSpot() {
       });
       setUpdateInProgress(false)
       alert('Spot updated successfully!');
+      navigate('/spots-list')
     } catch (e) {
       alert('Error adding document, check console');
       console.log(e)
