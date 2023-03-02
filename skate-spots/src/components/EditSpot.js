@@ -4,6 +4,7 @@ import { v4 } from 'uuid'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { ref, uploadBytes } from 'firebase/storage'
 import { db, storage } from '../firebase/config'
+import { BsInfoCircleFill } from 'react-icons/bs';
 import TagBubblesInteractive from './TagBubblesInteractive'
 import Links from './Links'
 import '../styles/EditSpot.css'
@@ -151,7 +152,7 @@ export default function EditSpot() {
             <input type="text" name="lng" id="lng" className='block-input' value={lng} onChange={(e) => setLng(e.target.value)} required />
           </label>
           <label htmlFor="name">Name:
-            <input type="text" name="name" id="name" className='block-input' value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" name="name" id="name" className='block-input name-input' value={name} onChange={(e) => setName(e.target.value)} required />
           </label>
           <label htmlFor='type'>Type:
             <select value={type} onChange={handleSelectChange}>
@@ -168,21 +169,26 @@ export default function EditSpot() {
             </select>
           </label>
           <label htmlFor='skate-stopped'>Skate-stopped?
-            <input type='radio' value='yes' name='skate-stopped' checked={skateStopped === 'yes'} onChange={handleRadioChange} />Yes
-            <input type='radio' value='no' name='skate-stopped' checked={skateStopped === 'no'} onChange={handleRadioChange} />No
+            <div className='skate-stopped-container'>
+              <input type='radio' value='yes' name='skate-stopped' checked={skateStopped === 'yes'} onChange={handleRadioChange} />Yes
+              <input type='radio' value='no' name='skate-stopped' checked={skateStopped === 'no'} onChange={handleRadioChange} />No
+            </div>
           </label><br></br>
-          <label htmlFor='tag'>Current Tags:
+          <label htmlFor='tag'>Tags:
             <div className='tags-container'>{tags && <TagBubblesInteractive tags={tags} handleDeleteTag={handleDeleteTag} />}</div>
-            <input type='text' name='tag' id='tag' className='block-input' value={tag} onChange={handleTagChange} />
-            <p className='tag-directions'>(Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind)</p>
+            <input type='text' placeholder='Enter new-tag...' name='tag' id='tag' className='block-input' value={tag} onChange={handleTagChange} />
+            <p className='tag-directions directions'><BsInfoCircleFill /> Type a tag and press SPACE to add it to the list. Use hyphens instead of spaces in tags, e.g. ride-on-grind.</p>
           </label>
           <label htmlFor="currYoutube">Current YouTube Links:
             <Links links={youtubeLinks} delete={deleteYoutubeLink} />
             <input type="text" name="currYoutube" id="currYoutube" className='youtube-input' value={currYoutube} onChange={(e) => setCurrYoutube(e.target.value)} />
-            <input type='button' value='Add Youtube Link' className='add-youtube' onClick={addYoutubeLink} />
+            <input type='button' value='Add Youtube Link' className='add-youtube-button' onClick={addYoutubeLink} />
           </label>
-          <p className='youtube-directions'>NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong></p>
-          <p className='youtube-directions'>You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" on YouTube (and take only the link from the embed code).</p>
+          <p className='youtube-directions directions'>
+            <BsInfoCircleFill /> NOTE: URL format must be https://www.youtube.com/<strong>embed</strong>/ZZ5vETmUYQA<strong>?start</strong>=139, NOT https://youtu.be/ZZ5vETmUYQA?<strong>t=139</strong>
+            <br /><br />
+            You can build this link yourself by ensuring that <strong>/embed</strong> and <strong>?start</strong> are included, or click the "Embed" option after clicking "Share" on YouTube (and take only the link from the embed code).
+          </p>
           <label htmlFor='description'>Description:
             <textarea
               name='description'

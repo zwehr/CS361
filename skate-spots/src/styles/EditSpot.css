@@ -20,6 +20,15 @@
   margin: 10px;
 }
 
+.EditSpot .directions {
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #eee;
+  padding: 5px;
+  width: 90%;
+  margin: 10px auto;
+}
+
 .EditSpot textarea {
   width: 95%;
   height: 65px;
@@ -35,6 +44,10 @@
   margin: 2px 0 12px 10px;
 }
 
+.EditSpot .name-input {
+  width: 50%;
+}
+
 .EditSpot input[type='select'] {
   margin: 2px 0 30px 10px;
 }
@@ -43,15 +56,16 @@
   margin: 2px 0 12px 10px;
 }
 
-.EditSpot input[type='radio'] {
-  margin: 2px 0 12px 10px;
+.EditSpot .skate-stopped-container {
+  height: 10px;
+  padding: 8px 0 0 5px;
 }
 
 .EditSpot .tags-container {
   height: 20px;
   width: 100%;
   display: inline-block;
-  margin-bottom: 5px;
+  margin: 2px 0 5px 5px;
 }
 
 .EditSpot input[name='tag'] {
@@ -59,7 +73,12 @@
 }
 
 .EditSpot input[name='currYoutube'] {
-  width: 375px;
+  margin-left: 10px;
+  width: 70%;
+}
+
+.EditSpot .add-youtube-button {
+  margin-left: 10px;
 }
 
 .EditSpot .tag-directions,
