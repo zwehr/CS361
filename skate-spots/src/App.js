@@ -5,7 +5,6 @@ import EditSpot from "./components/EditSpot";
 import Nav from "./components/Nav";
 import SpotsMap from "./components/SpotsMap";
 import Login from "./components/Login";
-import SignUp from "./components/SignUp";
 import Account from "./components/Account";
 import SpotsList from "./components/SpotsList";
 import ProtectedRoute from "./components/ProtectedRoute";
