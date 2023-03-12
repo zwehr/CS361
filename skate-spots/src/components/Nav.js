@@ -9,7 +9,8 @@ export default function Nav() {
     <nav className="Nav">
       <h1 className="app-name">Skate Spots App</h1>
       <NavLink to="/">Home (Map)</NavLink>
-      {user && <NavLink to="/spots-list">Spots List (Admin)</NavLink>}
+      <NavLink to="/spots-list">Spots List</NavLink>
+      {user && <NavLink to="/spots-list-admin">Spots List (Admin)</NavLink>}
       {user && <NavLink to="/add-spot">Add Spot</NavLink>}
       {user && <NavLink to="/account">Account</NavLink>}
       <NavLink to="/login">Admin Login</NavLink>

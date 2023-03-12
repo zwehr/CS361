@@ -1,39 +1,39 @@
-.SpotsList .h2-header {
+.SpotsListAdmin .h2-header {
   margin-top: 50px;
 }
 
-.SpotsList button {
+.SpotsListAdmin button {
   display: inline-block;
 }
 
-.SpotsList .single-spot {
+.SpotsListAdmin .single-spot {
   font-size: 20px;
   margin-bottom: 12px;
 }
 
-.SpotsList .table-container {
+.SpotsListAdmin .table-container {
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.SpotsList table {
+.SpotsListAdmin table {
   text-align: left;
   margin: 0 auto;
   border: 1px solid #000;
   border-collapse: collapse;
 }
 
-.SpotsList table,
+.SpotsListAdmin table,
 th,
 td {
   border: 1px solid #000;
 }
 
-.SpotsList table th {
+.SpotsListAdmin table th {
   text-align: center;
 }
 
-.SpotsList table td {
+.SpotsListAdmin table td {
   padding: 5px 10px 5px 10px;
 }

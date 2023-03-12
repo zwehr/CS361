@@ -6,7 +6,8 @@ import Nav from "./components/Nav";
 import SpotsMap from "./components/SpotsMap";
 import Login from "./components/Login";
 import Account from "./components/Account";
-import SpotsList from "./components/SpotsList";
+import SpotsListPublic from "./components/SpotsListPublic";
+import SpotsListAdmin from "./components/SpotsListAdmin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/" element={<SpotsMap />} />
+            <Route path="/spots-list" element={<SpotsListPublic />} />
             <Route
               path="/add-spot"
               element={
@@ -46,10 +48,10 @@ function App() {
               }
             />
             <Route
-              path="/spots-list"
+              path="/spots-list-admin"
               element={
                 <ProtectedRoute>
-                  <SpotsList />
+                  <SpotsListAdmin />
                 </ProtectedRoute>
               }
             />
