@@ -17,3 +17,7 @@
   font-size: 24px;
   padding-top: 40px;
 }
+
+.DeleteWarningPopup button {
+  margin: 5px;
+}

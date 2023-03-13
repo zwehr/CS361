@@ -1,3 +1,10 @@
 .Login .h2-header {
   margin-top: 50px;
 }
+
+.Login input[type="email"],
+.Login input[type="password"],
+.Login input[type="submit"] {
+  margin: 10px auto;
+  display: block;
+}
